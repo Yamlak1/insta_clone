@@ -3,7 +3,7 @@ import 'main_page.dart';
 import 'Utilities/colors.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -14,54 +14,65 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        // padding: const EdgeInsets.all(16.0),
-        padding: EdgeInsets.fromLTRB(0, 420, 0, 0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Instaclone',
-              style: TextStyle(
-                fontFamily: 'Billabong',
-                fontSize: 74.0,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 450.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Instaclone',
+                      style: TextStyle(
+                        fontFamily: 'Billabong',
+                        fontSize: 74.0,
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    TextField(
+                      controller: usernameController,
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                        filled: true,
+                        fillColor: mobileSearchColor,
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 16.0),
+                      ),
+                    ),
+                    SizedBox(height: 15),
+                    TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: mobileSearchColor,
+                        labelText: 'Password',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 12.0, horizontal: 16.0),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(
-                labelText: 'Username',
-                filled: true,
-                fillColor: mobileSearchColor,
-                border: OutlineInputBorder(),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-              ),
-            ),
-            SizedBox(height: 15),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: mobileSearchColor,
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
-              ),
-            ),
-            SizedBox(height: 15),
-            ElevatedButton(
+          ),
+          SizedBox(height: 15),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: blueColor,
                 minimumSize: Size(500, 48),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      0.0), // Adjust the value for rounded corners
+                  borderRadius: BorderRadius.circular(0.0),
                 ),
               ),
               onPressed: () {
@@ -88,8 +99,8 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('Login'),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
